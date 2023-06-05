@@ -128,5 +128,28 @@ namespace SoundAnalysisLib
 
             return rangeSq.Max() / avg;
         }
+
+        public IEnumerable<double> GetMFCC(MelFilterBank filterBank, int outputVectorLength)
+        {
+            var S = filterBank.GetFilteredFFTEnergy(data);
+            for (int m=0;m<S.Length;m++)
+            {
+                if (!double.IsFinite(Math.Log(S[m])))
+                    throw new ArgumentException();
+                if (S[m] != 0)
+                    S[m] = Math.Log(S[m]);
+                if (!double.IsFinite(S[m]))
+                    throw new ArgumentException();
+            }
+            // DCT
+            for (int i=1;i<=outputVectorLength;++i)
+            {
+                double sum = 0.0;
+                for (int m = 0; m < S.Length; ++m)
+                    sum += S[m] * Math.Cos(Math.PI * i * (m + 1.0 - 0.5) / S.Length);
+                sum *= Math.Sqrt(2.0 / S.Length);
+                yield return sum;
+            }
+        }
     }
 }

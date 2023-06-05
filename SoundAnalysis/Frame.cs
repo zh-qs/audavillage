@@ -37,6 +37,7 @@ namespace SoundAnalysisLib
 
         public IEnumerable<double> GetData(int channel = 0, bool alignToPowerOfTwo = false, int minSize = 0)
         {
+            window.GetBordersFromFrame(this); // maybe redundant, but safer
             long size = frameLength;
             if (alignToPowerOfTwo)
             {

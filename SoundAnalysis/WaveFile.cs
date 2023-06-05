@@ -5,10 +5,9 @@
         protected WaveHeader waveHeader;
         protected abstract Array WaveData { get; }
         public WaveHeader WaveHeader { get => waveHeader; }
-        public int SampleCount { get => WaveData.GetLength(1); }
+        public abstract int SampleCount { get; }
         public double Duration { get => ((double)SampleCount) / waveHeader.sampleRate; }
         public abstract double[] GetData(int channel = 0);
-
         public abstract double this[int channel, int index] { get; }
         public double this[int channel, int index, WindowFunction window] => this[channel, index] * window.GetWindowedValue(index);
 
@@ -72,6 +71,8 @@
         public T GetValue(int channel, int index) => waveData[channel, index];
         public override double this[int channel, int index] { get => Convert.ToDouble(waveData[channel, index]) / Convert.ToDouble(maxValue[channel]); }
 
+        public override int SampleCount { get => waveData.GetLength(1); }
+
         public GenericWaveFile(WaveHeader header, SymbolStream<T> stream)
         {
             waveHeader = header;
@@ -100,5 +101,24 @@
             }
             return data;
         }
+    }
+
+    public class PreemphasizedWaveFileDecorator : WaveFile
+    {
+        double[] data;
+        public override int SampleCount { get => data.Length; }
+        public PreemphasizedWaveFileDecorator(WaveFile waveFile, double preemprasisCoefficient, int channel = 0)
+        {
+            waveHeader = waveFile.WaveHeader;
+            data = waveFile.GetData(channel);
+            for (int i = data.Length - 1; i > 0; --i)
+                data[i] -= preemprasisCoefficient * data[i - 1];
+        }
+
+        public override double this[int channel, int index] => data[index];
+
+        protected override Array WaveData => data;
+
+        public override double[] GetData(int channel = 0) => data;
     }
 }

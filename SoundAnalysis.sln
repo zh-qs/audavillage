@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundAnalysisLib", "SoundAn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTests", "SimpleTests\SimpleTests.csproj", "{A4220833-8652-406B-91AA-73321891AC27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundAnalysisApp", "SoundAnalysisApp\SoundAnalysisApp.csproj", "{37A9534B-014F-41F1-A225-D6D76DB8F393}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundAnalysisApp", "SoundAnalysisApp\SoundAnalysisApp.csproj", "{37A9534B-014F-41F1-A225-D6D76DB8F393}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeakerRecognitionApp", "SpeakerRecognitionApp\SpeakerRecognitionApp.csproj", "{5CAD0A24-5564-40F6-A9DF-C7A2EFCA52A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{37A9534B-014F-41F1-A225-D6D76DB8F393}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37A9534B-014F-41F1-A225-D6D76DB8F393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37A9534B-014F-41F1-A225-D6D76DB8F393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CAD0A24-5564-40F6-A9DF-C7A2EFCA52A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CAD0A24-5564-40F6-A9DF-C7A2EFCA52A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CAD0A24-5564-40F6-A9DF-C7A2EFCA52A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CAD0A24-5564-40F6-A9DF-C7A2EFCA52A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
